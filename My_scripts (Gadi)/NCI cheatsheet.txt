@@ -1,0 +1,59 @@
+##################
+
+Logging into Jupyter Lab instance on VDI:
+
+Open Ubuntu and run:
+ssh ab4513@vdi-n3.nci.org.au -L 8888:localhost:8888
+
+Copy into Browser:
+http://127.0.0.1:8888/?token=91dacad379408310fa22601d28da7b612b8cebfbca3fae6d
+
+###################
+
+Logging into Gadi
+
+Open Ubuntu and run:
+ssh ab4513@gadi.nci.org.au
+
+###################
+
+Useful Commands
+
+## Check kSU left
+nci_account -P wj97
+
+## Check storage quota
+lquota
+
+## Submit Gadi Job
+qsub gadisubmit.pbs
+
+## Check Job Status
+qstat -H <job id>
+
+## Map to DEA modules
+module use /g/data/v10/public/modules/modulefiles
+
+## Load DEA Modules and Environments
+module load dea
+
+###################
+
+## Gadi Job Template (all files must be in UNIX format!!!!!)
+
+#!/bin/bash 
+#PBS -P wj97
+#PBS -l walltime=01:00:00 
+#PBS -l ncpus=16
+#PBS -l mem=64GB
+#PBS -l jobfs=10GB
+#PBS -l storage=scratch/wj97+gdata/v10+gdata/xu18+gdata/if87+gdata/fk4+gdata/rs0
+#PBS -l software=python3
+#PBS -l wd
+#PBS -M amos.j.bennett@gmail.com
+#PBS -m abe
+
+module load dea
+python3 dNBR_dask_tester.py
+
+
