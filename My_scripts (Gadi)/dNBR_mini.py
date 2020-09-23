@@ -8,7 +8,7 @@ import xarray as xr
 import numpy as np
 import matplotlib.pyplot as plt
 
-sys.path.append("/home/554/ab4513/dea-notebooks/Scripts")
+sys.path.append("/scratch/wj97/ab4513/dea-notebooks/Scripts")
 import dea_datahandling
 from dea_datahandling import load_ard
 from dea_plotting import rgb
@@ -43,7 +43,7 @@ prefire_data = load_ard(dc=dc,
     products=['s2a_ard_granule', 's2b_ard_granule'],
     measurements=['nbart_nir_1', 'nbart_swir_3'],
     min_gooddata=0,
-    dask_chunks={'x': 'auto', 'y': 'auto'},
+    # dask_chunks={'x': 'auto', 'y': 'auto'},
 
     group_by='solar_day',**query_1)
 
@@ -65,7 +65,7 @@ postfire_data = load_ard(dc=dc,
     products=['s2a_ard_granule', 's2b_ard_granule'],
     measurements=['nbart_nir_1', 'nbart_swir_3'],
     min_gooddata=0,
-    dask_chunks={'x': 'auto', 'y': 'auto'},
+    # dask_chunks={'x': 'auto', 'y': 'auto'},
 
     group_by='solar_day',**query_2)
 
@@ -78,7 +78,6 @@ postfire_burnratio = postfire_image.NBR
 postfire_burnratio.data
 
 delta_NBR = prefire_burnratio - postfire_burnratio
-delta_NBR.compute()
+# delta_NBR.compute()
 dnbr_dataset = delta_NBR.to_dataset(name='delta_NBR')
-write_geotiff(f'./tumbarumba_dNBR_dask.tif', dnbr_dataset)
-
+write_geotiff(f'./scratch/wj97/ab4513/tumbarumba_dNBR_mini.tif', dnbr_dataset)
