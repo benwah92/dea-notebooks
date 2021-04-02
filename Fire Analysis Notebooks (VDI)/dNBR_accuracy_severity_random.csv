@@ -1,6 +1,6 @@
 actual_severity,Unburnt,Low,Moderate,High,Extreme
-Unburnt,39,1,0,0,0
-Low,14,15,11,0,0
-Moderate,2,6,16,4,12
-High,0,0,11,21,8
-Extreme,0,0,0,9,31
+Unburnt,37,0,3,0,0
+Low,15,16,9,0,0
+Moderate,2,2,21,4,11
+High,0,1,12,18,9
+Extreme,0,0,0,5,35
